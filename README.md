@@ -1,6 +1,8 @@
 # kunit
 Lightweight Assertion Framework for Kotlin Unit-Tests
 
+(under construction ... sadly it takes some time to extract all related stuff from our main product into this project ... I expect to have a working solution at 10.04.18 ... if not so, I don't think it will ever be finished)
+
 ## Examples
 
 ```kotlin
@@ -19,6 +21,8 @@ Lightweight Assertion Framework for Kotlin Unit-Tests
    
 }
 ```
+
+For more examples have a look at the [API documentation](#api)
 
 
 ## Why another testing library?
@@ -62,4 +66,27 @@ Since there will be an `AssertionError` in case condition is `false` I decided t
   - probably the closest solution to my expectations
   - I personally like this solution very much
 - [Kluent]()https://markusamshove.github.io/Kluent)
-  - this not close to what I want to do, it is **exactly what I want to do** 
+  - this not close to what I want to do, it is **exactly what I want to do**
+  - _To be honest: If I would have found this library earlier I wouldn't
+    have started writing my own one. Both are very similar. Nevertheless I am now
+    at a point where I don't want to throw away my solution._
+
+## Highlights
+- uniform and consistent syntax
+- Nice failure messages which are easy to read and parseable for IDEs like IntelliJ 
+
+```
+-------------------------------------------------------------
+Following values were expected to be equal:
+  expected : 6
+    actual : 5
+------------------------------------------------------------
+(for IntelliJ)
+expected: 6 but was: 5
+```
+
+
+    
+## Api<a name="api"></a>
+
+### General assertions
