@@ -13,8 +13,14 @@ class OptionalAssertionsTest : KUnitTest() {
     val opt = Optional.empty<String>()
     expectAssertionError(
         { opt mustBe present },
-        "Optional is not present"
-    )
+        """|
+           |------------------------------------------------------------
+           |Optional was expected
+           |  to be   : present
+           |  but was : not present
+           |------------------------------------------------------------
+           |(for IntelliJ) expected: present but was: not present
+           """.trimMargin())
   }
 
   @Test fun `Optional mustNotBe present - positiv`() {
@@ -26,7 +32,13 @@ class OptionalAssertionsTest : KUnitTest() {
     val opt = Optional.of("Hallo")
     expectAssertionError(
         { opt mustNotBe present },
-        "Optional is present"
-    )
+        """|
+           |------------------------------------------------------------
+           |Optional was expected
+           |  to be   : not present
+           |  but was : present
+           |------------------------------------------------------------
+           |(for IntelliJ) expected: not present but was: present
+           """.trimMargin())
   }
 }

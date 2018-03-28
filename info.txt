@@ -1,0 +1,63 @@
+5 mustBe 6
+
+Value was expected 
+  to be   : 6
+  but was : 5
+------------------------------------------------------------
+5 mustBeLowerOrEqual 3
+
+Value was expected 
+  to be lower or equal : 3
+  but was              : 5
+------------------------------------------------------------
+valOpt mustBe present
+
+Value was expected 
+  to be   : present
+  but was : not present
+------------------------------------------------------------
+valOpt mustNotBe present
+
+Value was expected 
+  to be   : not present
+  but was : present
+------------------------------------------------------------
+"abc" mustNotBe "abc"
+
+Value was expected
+  not to be : abc
+  but was   : abc
+
+------------------------------------------------------------
+clazz mustBeType String::class.java
+
+Value was expected 
+  to be of type   : java.lang.String
+  but was of type : java.lang.Integer
+------------------------------------------------------------
+null mustBe empty
+
+Value was expected
+  to be   : (empty)
+  but was : null
+------------------------------------------------------------
+"abc" mustEndWith "d"
+
+Value was expected 
+  to end with : d
+  but was     : abc
+------------------------------------------------------------
+"abc" mustContain "d"
+
+Value was expected
+  to contain : d
+  but was    : abc
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------

@@ -1,7 +1,6 @@
 package de.mabe.kjunit
 
-import org.junit.Assert.assertNotEquals
-import org.junit.Assert.fail
+import de.mabe.kjunit.BaseFunctions.toStringWithType
 
 
 infix fun <T> T.assert(method: T.() -> Unit): Unit {
@@ -9,18 +8,39 @@ infix fun <T> T.assert(method: T.() -> Unit): Unit {
 }
 
 
-infix fun <T> T?.mustBe(expected: T?) = BaseFunctions.assert_equals(expected, this)
+infix fun <T> T?.mustBe(expected: T?) {
+  if (this == expected) return
 
-infix fun <T> T?.mustNotBe(expected: T?) = assertNotEquals(expected, this)
+  if (this.toString() != expected.toString()) {
+    BaseFunctions.failure("Value was expected", "to be", expected.toString(), "but was", this.toString())
+  } else
+    BaseFunctions.failure("Value was expected", "to be", expected.toStringWithType(), "but was", this.toStringWithType())
+}
 
-infix fun Any?.mustBeInstanceOf(expected: Class<*>) {
+infix fun <T> T?.mustNotBe(expected: T?) {
+  if (this != expected) return
+
+  BaseFunctions.failure("Value was expected", "not to be", expected.toString(), "but was also", this.toString(), false)
+}
+
+infix fun Any?.mustBeOfType(expected: Class<*>) {
   this mustNotBe null
   val clazz = this!!::class.java
   if (clazz == expected) return
 
-  BaseFunctions.failure("Type of object was expected to be",
-      expected.name,
-      clazz.name)
+  BaseFunctions.failure("Object was expected",
+      "to be of type", expected.name,
+      "but was of type", clazz.name
+  )
+}
+
+infix fun Any?.mustBeOfTypeOrSubtype(expected: Class<*>) {
+  this mustNotBe null
+  val clazz = this!!::class.java
+  if (clazz == expected) return
+  if (expected.isAssignableFrom(this::class.java)) return
+
+  BaseFunctions.failure("Object was expected", "to be of type or subtype", expected.name, "but was of type", clazz.name)
 }
 
 infix fun Any?.mustBeSameInstanceLike(expected: Any?) {
@@ -28,9 +48,18 @@ infix fun Any?.mustBeSameInstanceLike(expected: Any?) {
 
   fun Any?.identity() = System.identityHashCode(this).toString()
 
-  BaseFunctions.failure("Variables were expected to reference same object",
-      expected!!::class.java.simpleName + "@" + expected.identity(),
-      this!!::class.java.simpleName + "@" + this.identity())
+  BaseFunctions.failure("Object was expected",
+      "to reference", expected!!::class.java.simpleName + "@" + expected.identity(),
+      "but referenced", this!!::class.java.simpleName + "@" + this.identity())
 }
 
-infix fun <T> T?.mustNotBeSameInstance(expected: T?) = fail("asds")
+infix fun Any?.mustNotBeSameInstanceLike(expected: Any?) {
+  if (this !== expected) return
+
+  fun Any?.identity() = System.identityHashCode(this).toString()
+
+  BaseFunctions.failure("Object was expected",
+      "not to reference", expected!!::class.java.simpleName + "@" + expected.identity(),
+      "but also referenced", this!!::class.java.simpleName + "@" + this.identity(),
+      false)
+}
