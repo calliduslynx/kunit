@@ -76,13 +76,12 @@ Since there will be an `AssertionError` in case condition is `false` I decided t
 - Nice failure messages which are easy to read and parseable for IDEs like IntelliJ 
 
 ```
->-------------------------------------------------------------
-Following values were expected to be equal:
-  expected : 6
-    actual : 5
+>------------------------------------------------------------
+Value was expected                                          
+  to b    : 6                                      
+  but was : 5                                      
 ------------------------------------------------------------
-(for IntelliJ)
-expected: 6 but was: 5
+(for IntelliJ) expected: 6but was: 5                        
 ```
 
 
@@ -90,3 +89,43 @@ expected: 6 but was: 5
 ## Api<a name="api"></a>
 
 ### General assertions
+
+```kotlin
+data class Car(val name:String)
+
+// ***** equality checks
+Car("Audi") mustBe Car("Audi")
+Car("Audi") mustNotBe Car("BMW") 
+
+// ***** bool checks
+boolValue mustBe true
+boolValue mustBe false
+
+// ***** instance checks
+Car("Audi") mustBeOfType Car::class.java
+Car("Audi") mustBeOfTypeOrSubtype Car::class.java
+
+Integer.valueOf(127) mustBeSameInstanceLike Integer.valueOf(127)
+Car("Audi") mustNotBeSameInstanceLike Car("Audi")
+
+
+```
+
+### String assertions
+
+```kotlin
+x mustBe "abc"
+
+"" mustBe empty
+
+"abcde" mustContain "bcd"
+"abcde" mustContain listOf("ab", "d", "e")
+
+"abcde" mustNotContain "xyz"
+
+"abcde" mustStartWith "abc"
+"abcde" mustEndWith "cde"
+
+"abcde" mustMatchRegex ".b.d."
+"abcde" mustMatchRegex Regex(".b.d.")
+```

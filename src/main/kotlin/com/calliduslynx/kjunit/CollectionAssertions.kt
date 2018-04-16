@@ -1,7 +1,11 @@
-package de.mabe.kjunit
+package com.calliduslynx.kjunit
 
 import org.junit.Assert
 
+
+// TODO List Assertions -> sorted, unsorted
+// TODO Set Assertions
+// TODO Collection Assertions
 
 class ListMatcher<T, E>(
     val extractor: (T) -> E,

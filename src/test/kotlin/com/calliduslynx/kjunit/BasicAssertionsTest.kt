@@ -1,10 +1,10 @@
-package de.mabe.kjunit
+package com.calliduslynx.kjunit
 
 import org.junit.Test
 import java.math.BigInteger
 
 class BasicAssertionsTest : KUnitTest() {
-  @Test fun `mustBe - positiv`() {
+  @Test fun `mustBe - positive`() {
     5 mustBe 5
     "Hallo" mustBe "Hallo"
     BigInteger.valueOf(23) mustBe BigInteger.valueOf(23)
@@ -12,7 +12,7 @@ class BasicAssertionsTest : KUnitTest() {
     (23 == 12) mustBe false
   }
 
-  @Test fun `mustBe - negativ`() {
+  @Test fun `mustBe - negative`() {
     expectAssertionError(
         { 5 mustBe 6 },
         """|
@@ -21,7 +21,7 @@ class BasicAssertionsTest : KUnitTest() {
            |  to be   : 6
            |  but was : 5
            |------------------------------------------------------------
-           |(for IntelliJ) expected: 6 but was: 5
+           |(for IntelliJ) expected: 6but was: 5
            """.trimMargin())
 
     expectAssertionError(
@@ -32,7 +32,7 @@ class BasicAssertionsTest : KUnitTest() {
            |  to be   : Ballo
            |  but was : Hallo
            |------------------------------------------------------------
-           |(for IntelliJ) expected: Ballo but was: Hallo
+           |(for IntelliJ) expected: Ballobut was: Hallo
            """.trimMargin())
 
     expectAssertionError(
@@ -43,11 +43,11 @@ class BasicAssertionsTest : KUnitTest() {
            |  to be   : java.lang.Long<5>
            |  but was : java.lang.Integer<5>
            |------------------------------------------------------------
-           |(for IntelliJ) expected: java.lang.Long<5> but was: java.lang.Integer<5>
+           |(for IntelliJ) expected: java.lang.Long<5>but was: java.lang.Integer<5>
            """.trimMargin())
   }
 
-  @Test fun `mustNotBe - positiv`() {
+  @Test fun `mustNotBe - positive`() {
     // success
     5 mustNotBe
         "Hallo" mustNotBe "Foo"
@@ -57,7 +57,7 @@ class BasicAssertionsTest : KUnitTest() {
     (23 == 12) mustNotBe true
   }
 
-  @Test fun `mustNotBe - negativ`() {
+  @Test fun `mustNotBe - negative`() {
     expectAssertionError(
         { 5 mustNotBe 5 },
         """|
@@ -69,14 +69,14 @@ class BasicAssertionsTest : KUnitTest() {
            """.trimMargin())
   }
 
-  @Test fun `mustBeSameInstance - positiv`() {
+  @Test fun `mustBeSameInstance - positive`() {
     val x = Integer(2098)
     val y = x
 
     x mustBeSameInstanceLike y
   }
 
-  @Test fun `mustBeSameInstance - negativ`() {
+  @Test fun `mustBeSameInstance - negative`() {
     val x = Integer(2098)
     val y = Integer(2098)
 
@@ -91,11 +91,11 @@ class BasicAssertionsTest : KUnitTest() {
            |  to reference   : Integer@$hashOfY
            |  but referenced : Integer@$hashOfX
            |------------------------------------------------------------
-           |(for IntelliJ) expected: Integer@$hashOfY but was: Integer@$hashOfX
+           |(for IntelliJ) expected: Integer@${hashOfY}but was: Integer@$hashOfX
            """.trimMargin())
   }
 
-  @Test fun `mustNotBeSameInstance - positiv`() {
+  @Test fun `mustNotBeSameInstance - positive`() {
     val x = Integer(2098)
     val y = Integer(2098)
 
@@ -104,7 +104,7 @@ class BasicAssertionsTest : KUnitTest() {
     x mustNotBeSameInstanceLike y
   }
 
-  @Test fun `mustNotBeSameInstance - negativ`() {
+  @Test fun `mustNotBeSameInstance - negative`() {
     val x = Integer(2098)
     val y = x
 
@@ -121,12 +121,12 @@ class BasicAssertionsTest : KUnitTest() {
            """.trimMargin())
   }
 
-  @Test fun `mustBeOfType - positiv`() {
+  @Test fun `mustBeOfType - positive`() {
     5 mustBeOfType java.lang.Integer::class.java
     "X" mustBeOfType String::class.java
   }
 
-  @Test fun `mustBeOfType - negativ`() {
+  @Test fun `mustBeOfType - negative`() {
     expectAssertionError(
         { 5 mustBeOfType String::class.java },
         """|
@@ -135,11 +135,11 @@ class BasicAssertionsTest : KUnitTest() {
            |  to be of type   : java.lang.String
            |  but was of type : java.lang.Integer
            |------------------------------------------------------------
-           |(for IntelliJ) expected: java.lang.String but was: java.lang.Integer
+           |(for IntelliJ) expected: java.lang.Stringbut was: java.lang.Integer
            """.trimMargin())
   }
 
-  @Test fun `mustBeOfTypeOrSubtype - positiv`() {
+  @Test fun `mustBeOfTypeOrSubtype - positive`() {
     open class A
     open class B : A()
     open class C : B()
@@ -156,7 +156,7 @@ class BasicAssertionsTest : KUnitTest() {
     c mustBeOfTypeOrSubtype C::class.java
   }
 
-  @Test fun `mustBeOfTypeOrSubtype - negativ`() {
+  @Test fun `mustBeOfTypeOrSubtype - negative`() {
     expectAssertionError(
         { 5 mustBeOfTypeOrSubtype String::class.java },
         """|
@@ -165,7 +165,7 @@ class BasicAssertionsTest : KUnitTest() {
            |  to be of type or subtype : java.lang.String
            |  but was of type          : java.lang.Integer
            |------------------------------------------------------------
-           |(for IntelliJ) expected: java.lang.String but was: java.lang.Integer
+           |(for IntelliJ) expected: java.lang.Stringbut was: java.lang.Integer
            """.trimMargin())
   }
 

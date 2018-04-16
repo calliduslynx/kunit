@@ -1,4 +1,4 @@
-package de.mabe.kjunit
+package com.calliduslynx.kjunit
 
 import java.util.*
 

@@ -1,4 +1,4 @@
-package de.mabe.kjunit
+package com.calliduslynx.kjunit
 
 import org.junit.Test
 import java.util.*
@@ -19,7 +19,7 @@ class OptionalAssertionsTest : KUnitTest() {
            |  to be   : present
            |  but was : not present
            |------------------------------------------------------------
-           |(for IntelliJ) expected: present but was: not present
+           |(for IntelliJ) expected: presentbut was: not present
            """.trimMargin())
   }
 
@@ -38,7 +38,7 @@ class OptionalAssertionsTest : KUnitTest() {
            |  to be   : not present
            |  but was : present
            |------------------------------------------------------------
-           |(for IntelliJ) expected: not present but was: present
+           |(for IntelliJ) expected: not presentbut was: present
            """.trimMargin())
   }
 }

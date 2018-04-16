@@ -1,0 +1,15 @@
+> IntelliJ
+    > Gehts auch noch ohne jUnit
+> Restliche Asserts + Tests
+    > Numbers
+        > nearly
+    > assert {..}
+> CI
+> Doku
+    > autogenerate
+> mvnrepository
+> Blog / Wiki / Website
+    > Logo?
+    > Facebook Kotlin Group
+> Ticket für Mock
+        

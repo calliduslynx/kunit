@@ -1,6 +1,6 @@
 @file:Suppress("ConstantConditionIf")
 
-package de.mabe.kjunit
+package com.calliduslynx.kjunit
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.fail

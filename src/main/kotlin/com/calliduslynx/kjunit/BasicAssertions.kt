@@ -1,6 +1,9 @@
-package de.mabe.kjunit
+package com.calliduslynx.kjunit
 
-import de.mabe.kjunit.BaseFunctions.toStringWithType
+import com.calliduslynx.kjunit.BaseFunctions.toStringWithType
+
+
+object empty
 
 
 infix fun <T> T.assert(method: T.() -> Unit): Unit {
@@ -28,6 +31,8 @@ infix fun Any?.mustBeOfType(expected: Class<*>) {
   val clazz = this!!::class.java
   if (clazz == expected) return
 
+   
+  
   BaseFunctions.failure("Object was expected",
       "to be of type", expected.name,
       "but was of type", clazz.name
