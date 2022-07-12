@@ -20,3 +20,14 @@ dependencies {
     //compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'de.mabe'
+            artifactId = 'kunit'
+            version = '1.0-SNAPSHOT'
+
+            from components.java
+        }
+    }
+}
