@@ -18,7 +18,7 @@ infix fun <T> List<T>.mustHaveAnyMatch(matchMethod: (T) -> Boolean) = Assert.ass
 
 inline infix fun <reified T> List<T>.mustMatch(expected: List<T>) {
   val x: Array<T> = expected.toTypedArray()
-  this.mustMatch(ListMatcher<T, T>({ it }, *x))
+  this.mustMatch(ListMatcher({ it }, *x))
 }
 
 infix fun <T, E> List<T>.mustMatch(listMatcher: ListMatcher<T, E>) {
